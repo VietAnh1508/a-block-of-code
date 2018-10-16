@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/a-block-of-code/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/a-block-of-code/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/a-block-of-code/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="A block of code" href="https://vietanh1508.github.io///a-block-of-code//feed.xml"/>
+
+    <!-- Font Awesome -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="/a-block-of-code/assets/css/vendor/font-awesome.min.css">
+    
+    
+
+    <!-- Google Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css"> 
+    
+
+    <!-- KaTeX 0.8.3 -->
+    
+    <link rel="stylesheet" type="text/css" href="/a-block-of-code/assets/css/vendor/katex.min.css">
+    <script src="/a-block-of-code/assets/js/vendor/katex.min.js">
+    </script>
+    
+
+    <!-- Google Analytics -->
+    
+    
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Bài toán các vị tướng Byzantine | A block of code</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Bài toán các vị tướng Byzantine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bài toán 2 vị tướng quân (Two generals problem)" />
+<meta property="og:description" content="Bài toán 2 vị tướng quân (Two generals problem)" />
+<link rel="canonical" href="https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" />
+<meta property="og:url" content="https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" />
+<meta property="og:site_name" content="A block of code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-16T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Bài toán 2 vị tướng quân (Two generals problem)","@type":"BlogPosting","url":"https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html","headline":"Bài toán các vị tướng Byzantine","dateModified":"2018-10-16T00:00:00+00:00","datePublished":"2018-10-16T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Bài toán các vị tướng Byzantine | A block of code</title>
+    <meta name="description" content="Bài toán 2 vị tướng quân (Two generals problem)">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+    
+    <!-- Logo and title -->
+	<div class="branding">
+		<a href="/a-block-of-code/">
+			<img class="avatar" src="/a-block-of-code/assets/img/triangle.svg" alt=""/>
+		</a>
+
+		<h1 class="site-title">
+			<a href="/a-block-of-code/">A block of code</a>
+		</h1>
+	</div>
+    
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+    
+    <!-- Menu -->
+    <ul class="hide">
+        <!-- Auto Generation of NORMAL pages in the navbar -->
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/about/">
+                About
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/gallery/">
+                Gallery
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/portfolio/">
+                Portfolio
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         
+        
+        <!-- Auto Generation of SPECIAL pages in the navbar -->
+        
+          
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" href="https://vietanh1508.github.io//a-block-of-code/search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </li>
+          
+        
+          
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" href="https://vietanh1508.github.io//a-block-of-code/tags">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                </a>
+            </li>
+          
+        
+    </ul>
+        
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="background-image: url('/a-block-of-code/')">
+    <h1 id="B%C3%A0i+to%C3%A1n+c%C3%A1c+v%E1%BB%8B+t%C6%B0%E1%BB%9Bng+Byzantine" class="title">Bài toán các vị tướng Byzantine</h1>
+    <p class="meta">
+    October 16, 2018
+    
+    </p>
+  </header>
+  <section class="post-content">
+  
+    <h3 id="bài-toán-2-vị-tướng-quân-two-generals-problem">Bài toán 2 vị tướng quân (Two generals problem)</h3>
+
+<p>Trong ngành khoa học máy tính, bài toán Hai vị tướng là một vấn đề được đưa ra nhằm đạt được thỏa thuận thông qua việc trao đổi thông tin trong một môi trường không đáng tin cậy. Nội dung bài toán được mô tả như sau:</p>
+
+<p>Ngày xửa ngày xưa, thời binh đao loạn lạc, các quốc gia trên thế giới liên tục gây chiến với nhau nhằm tranh giành lãnh thổ. Ở một trận chiến nọ, có 2 vị tướng, mỗi người lãnh đạo 1 đạo quân, mỗi đạo quân bao vây quân địch ở 2 hướng, nhưng họ bị ngăn cách với quân địch bởi 2 ngọn núi.
+<img src="../../../assets/img/posts/two-generals-problem.png" alt="Two generals problem" />
+Quân địch đông và nguy hiểm, 2 vị tướng nhận thấy họ chỉ giành chiến thắng khi hợp lực tấn công cùng lúc, ngược lại sẽ chuốc lấy thất bại. Do đó, họ cần thống nhất với nhau về thời gian tấn công, nhưng họ trao đổi thông tin với nhau như thế nào?
+Ở thời đại khoa học kĩ thuật chưa phát triển đó, lựa chọn duy nhất của 2 vị tướng là viết thư, rồi cử sứ giả chuyển bức thư đó.</p>
+
+<p>Giải pháp này tồn tại các rủi ro:</p>
+
+<ul>
+  <li>Con đường duy nhất để đưa thư là đi xuyên qua quân địch (đi vòng qua 2 ngọn đồi sẽ mất rất nhiều thời gian), do đó, sứ giả có thể bị bắt, thư không được gửi tới đích.</li>
+  <li>Thư được gửi thành công, nhưng nội dung thư có thể bị sửa đổi (do quân địch mua chuộc, hay do sứ giả phản bội, v.v…)</li>
+</ul>
+
+<p>Một bé gái nào đó đã đưa ra giải pháp cho vấn đề này: <a href="https://twitter.com/alexsnaps/status/590993615956156416">đào 1 đường hầm xuyên qua thung lũng</a>. Đùa thôi, bỏ thời gian và công sức để đào hầm thì đi vòng qua núi sẽ nhanh hơn.</p>
+
+<p>Quay lại phương pháp đưa thư, 1 trong 2 vị tướng sẽ đưa ra ngày giờ tấn công, sau đó gửi thông điệp cho người kia. Nhưng làm thế nào cả 2 biết rằng thông điệp đã được gửi an toàn và được đồng thuận?</p>
+
+<p>Chúng ta cùng xem xét quá trình này:</p>
+
+<ul>
+  <li>Vị tướng A1 gửi đi 1 thông điệp: “Hãy tấn công vào 12:00 ngày 28/04”. Tuy nhiên, sau khi gửi đi, ông hoàn toàn không biết được thông điệp có được gửi đến người kia một cách an toàn hay không.</li>
+  <li>Để xác nhận điều đó, sau khi nhận được thông điệp, vị tướng A2 sẽ viết một thông điệp xác nhận: “Tôi đã nhận được thông điệp, hãy cùng tấn công vào lúc 12:00 ngày 28/04”, và gửi lại cho A1. Nhưng một lần nữa, A2 vẫn không biết chắc rằng thông điệp có được gửi cho A1 hay không.</li>
+  <li>Để chắc chắn hơn, khi vị tướng A1 nhận được thông điệp xác nhận, ông lại gửi tiếp 1 thông điệp với nội dung: “Tôi đã nhận được xác nhận của anh về cuộc tấn công lúc 12:00 ngày 28/04 rồi”. Tuy nhiên, vẫn có những rủi ro cho người đưa thư như đã đề cập ở trên.</li>
+</ul>
+
+<p>Cứ như vậy, cả 2 vị tướng đều bị đặt trong trạng thái băn khoăn, không ai có thể biết được thông điệp của mình có được gửi đến đích hay không, và người kia có đồng ý với kế hoạch tấn công hay không.</p>
+
+<h3 id="bài-toán-các-vị-tướng-byzantine-the-byzantine-generals-problem">Bài toán các vị tướng Byzantine (The Byzantine generals problem)</h3>
+
+<p>Bài toàn các vị tướng Byzantine là phiên bản tổng quát của bài toán Hai vị tướng, miêu tả quân đội Byzantine hùng mạnh, tiến hành vây hãm 1 thành phố. Quân Byznatine chia thành nhiều đạo quân nhỏ, mỗi đạo quân được chỉ huy bởi 1 vị tướng, dưới mỗi vị tướng lại có các chỉ huy. Họ đều liên lạc với nhau bằng cách gửi thư. Các cánh quân phải đồng thuận về việc tất cả cùng tấn công, hoặc cùng rút lui tại cùng một thời điểm xác định. Ngược lại, họ sẽ bị đánh bại.
+<img src="../../../assets/img/posts/byzantine-generals-problem.png" alt="The Byzantine generals problem" />
+Nếu tất cả các vị tướng/ chỉ huy đều trung thành, mọi chuyện sẽ thật dễ dàng. Nhưng trong hàng ngũ Byzantine tồn tại những kẻ phản bội.</p>
+
+<p>Giả sử một vị tướng gửi thông điệp “Tấn công” cho 2 chỉ huy dưới quyền, nhưng chỉ huy 2 là kẻ phản bội, hắn sẽ sửa đổi nội dung thông điệp (“Rút lui”) và gửi lại cho chỉ huy 1. Chỉ huy 1 nhận được 2 thông điệp khác nhau và bối rối không biết ai là kẻ phản bội. Nếu chỉ huy 1 tuân theo vị tướng, quân lực sẽ bị giảm đi (do chỉ huy 2 không tấn công), họ sẽ thất bại.
+<img src="../../../assets/img/posts/byzantine-traitor.jpeg" alt="traitor-in-army" />
+Ngược lại, nếu chỉ huy là kẻ phản bội, đội quân cũng sẽ thua trận.</p>
+
+<p>Nếu có thêm 1 chỉ huy, hoặc có thêm ý kiến khác trong việc điều quân (ví dụ: “Đang cân nhắc”) sự phức tạp trong việc đồng thuận giữa tướng quân và các chỉ huy sẽ tăng lên nhiều lần. Với đội quân gồm hàng chục vị tướng và hàng trăm chỉ huy, độ phức tạp sẽ tăng theo cấp lũy thừa.
+<img src="../../../assets/img/posts/more-lieutenants.jpeg" alt="more-lieutenants" /></p>
+
+<p>Đây chính là vấn đề đặt ra cho một hệ thống phân tán, điển hình là Blockchain. Tại đó, các nút hoạt động ngang hàng, không hề tồn tại “vị tướng” (server) mà chỉ có các “chỉ huy” với quyền hạn bằng nhau, tương tác với nhau nhằm tìm sự đồng thuận.</p>
+
+<h3 id="hệ-thống-chịu-lỗi-byzantine-byzantine-fault-tolerance">Hệ thống chịu lỗi Byzantine (Byzantine Fault Tolerance)</h3>
+
+<p>Hệ thống chịu lỗi Byzantine là hệ thống có thể giải quyết vấn đề của bài toán các vị tướng Byzantine.
+Vào năm 2008, cha đẻ của Bitcoin, Satoshi Nakamoto đã giới thiệu một phương pháp nhằm giải quyết bài toán các vị tướng Byzantine, ông gọi phương pháp này là Proof-of-Work (PoW), hay “Bằng chứng công việc”. Satoshi đã trực tiếp giải thích về cách Bitcoin dùng PoW để giải quyết bài toán các vị tướng Byzantine trong một email gửi đi ngày 14/11/2008, bạn có thể xem qua tại <a href="https://satoshi.nakamotoinstitute.org/emails/cryptography/11/#selection-71.45-97.32">đây</a>:
+<img src="../../../assets/img/posts/satoshi-explains-pow.png" alt="satoshi-explains-proof-of-work" /></p>
+
+  
+  </section>
+  
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html&text=B%C3%A0i+to%C3%A1n+c%C3%A1c+v%E1%BB%8B+t%C6%B0%E1%BB%9Bng+Byzantine%20%7C%20A+block+of+code:%20https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://plus.google.com/share?url=https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" target="_blank" title="Share on Google+">
+			<i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Google+</span>
+		</a>
+        </li>
+            
+        <li>
+            <a href="http://www.reddit.com/submit?url=https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html&title=B%C3%A0i+to%C3%A1n+c%C3%A1c+v%E1%BB%8B+t%C6%B0%E1%BB%9Bng+Byzantine%20%7C%20A+block+of+code" target="_blank" title="Share on Reddit">
+			<i class="fa fa-reddit-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Reddit</span>
+		</a>
+        </li>
+           
+        <li>
+            <a href="mailto:?subject=B%C3%A0i+to%C3%A1n+c%C3%A1c+v%E1%BB%8B+t%C6%B0%E1%BB%9Bng+Byzantine%20%7C%20A+block+of+code&body=:%20https://vietanh1508.github.io//a-block-of-code/2018/10/16/bai-toan-cac-vi-tuong-byzantine.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+   
+   <!-- Tag list -->
+  
+  
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button" href="/a-block-of-code/tags#blockchain">
+      <p><i class="fa fa-tag fa-fw"></i> blockchain</p>
+    </a>
+    
+    <a class="button" href="/a-block-of-code/tags#problems">
+      <p><i class="fa fa-tag fa-fw"></i> problems</p>
+    </a>
+    
+  </div>
+</footer>
+
+    
+</article>
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+	var disqus_shortname = 'ABlockOfCode';
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+</div>
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  
+</div>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+	<a href="mailto:vietanhtong1508@gmail.com" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/vietanh1508" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/viet-anh-tong-032029147/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/VietAnhTong" title="Follow on Twitter" class="type">
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
