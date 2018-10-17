@@ -58,7 +58,7 @@ theme_settings:
     email: true
 
   # Scripts / Features
-  google_analytics: "UA-127661069-1"
+  google_analytics: UA-127661069-1
   disqus_shortname: ABlockOfCode
   katex: true # Enable if using math markup
 
