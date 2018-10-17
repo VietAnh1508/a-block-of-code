@@ -2,7 +2,7 @@
 baseurl: "/a-block-of-code"
 url: "https://vietanh1508.github.io/"
 title: A block of code # site's title
-description: "A website with blog posts and pages" # used by search engines
+description: "A personal blog about blockchain and programming" # used by search engines
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
