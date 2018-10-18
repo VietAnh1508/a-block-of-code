@@ -2,7 +2,7 @@
 layout: post
 title: Bài toán các vị tướng Byzantine
 category: []
-tags: [problems, blockchain]
+tags: [byzantine, problems, blockchain]
 ---
 
 ### Bài toán 2 vị tướng quân (Two generals problem)
