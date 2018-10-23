@@ -5,7 +5,7 @@
         <atom:link href="/a-block-of-code/feed.xml" rel="self" type="application/rss+xml"/>
         <link>https://vietanh1508.github.io//a-block-of-code/</link>
         <description></description>
-        <pubDate>Sun, 21 Oct 2018 16:28:58 +0000</pubDate>
+        <pubDate>Tue, 23 Oct 2018 01:12:27 +0000</pubDate>
         
         <item>
             <title>Hệ thống phân tán là gì?</title>
@@ -33,6 +33,8 @@ Decentralized Application (Dapp) giải quyết các vấn đề nêu trên bằ
   &lt;li&gt;Tính sẵn dùng cao, ngay cả khi một phần hệ thống bị lỗi, hay thậm chí chỉ còn 1 node (node đầy đủ) hoạt động, ta có thể khôi phục lại toàn bộ hệ thống từ node này.&lt;/li&gt;
   &lt;li&gt;Không một cá nhân hay tổ chức nào có thể kiểm soát được hệ thống, trừ khi có đủ nguồn lực để thực hiện một cuộc tấn công 51% (khi quy mô của Dapp càng lớn, 51% attack đã dần trở nên bất khả thi).&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;Ngoài ra, Dapp là lựa chọn thích hợp để xây dựng tiền mã hóa. Vì source code được lưu trữ trên blockchain, mọi thay đổi logic đều phải được đồng thuận giữa các node. Bạn không thể sử dụng một đồng tiền được tạo ra bởi hệ thống tập trung (centralized), khi team dev có thể thay đổi source code của đồng tiền đó bất cứ khi nào họ muốn.&lt;/p&gt;
 </description>
             <pubDate>Sun, 21 Oct 2018 00:00:00 +0000</pubDate>
         </item>
