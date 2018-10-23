@@ -25,3 +25,5 @@ Nhưng code của ứng dụng sẽ được lưu trữ, deploy như thế nào?
 - Dapp khả chuyển và dễ mở rộng.
 - Tính sẵn dùng cao, ngay cả khi một phần hệ thống bị lỗi, hay thậm chí chỉ còn 1 node (node đầy đủ) hoạt động, ta có thể khôi phục lại toàn bộ hệ thống từ node này.
 - Không một cá nhân hay tổ chức nào có thể kiểm soát được hệ thống, trừ khi có đủ nguồn lực để thực hiện một cuộc tấn công 51% (khi quy mô của Dapp càng lớn, 51% attack đã dần trở nên bất khả thi).
+
+Ngoài ra, Dapp là lựa chọn thích hợp để xây dựng tiền mã hóa. Vì source code được lưu trữ trên blockchain, mọi thay đổi logic đều phải được đồng thuận giữa các node. Bạn không thể sử dụng một đồng tiền được tạo ra bởi hệ thống tập trung (centralized), khi team dev có thể thay đổi source code của đồng tiền đó bất cứ khi nào họ muốn.
