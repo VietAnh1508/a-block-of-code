@@ -5,7 +5,7 @@ category: []
 tags: []
 ---
 
-### Câu chuyên về 1 ông giáo sư người Nhật và phát minh quan trọng nhất 500 năm qua
+### Câu chuyện về 1 ông giáo sư người Nhật và phát minh quan trọng nhất 500 năm qua
 
 Tác giả: Daniel Jeffries
 
