@@ -29,6 +29,15 @@ Một số quan điểm cho rằng ví web mang lại sự tiện dụng nhưng 
 
 Ngoài ra, các sàn giao dịch cũng cung cấp ví bitcoin trực tiếp, nhằm tạo điều kiện thuận lợi cho khách hàng, các ví này cung cấp hầu hết mọi tính năng cần thiết mà một ví bitcoin cần có. Tuy nhiên, không nên trữ quá nhiều tiền tại sàn, chỉ nên giữ một lượng vừa đủ để mua bán, còn lại nên rút về ví (sàn sập thì mất tiền :v).
 
+Một số ví web cung cấp tính năng như một trình duyệt blockchain, hỗ trợ tìm các địa chỉ, giao dịch và các block, đồng thời thấy được các mối quan hệ cũng như dòng chảy tương tác giữa chúng. Các trình duyệt blockchain phổ biến:
+
+- Bitcoin Block Explorer
+- BlockCypher Explorer
+- blockchain.info
+- BitPay Insight
+
+Các trình duyệt trên đều có chức năng tìm kiếm theo địa chỉ bitcoin, mã băm giao dịch, số block, mã băm block và lấy về những thông tin tương ứng từ mạng bitcoin.
+
 #### Ví phần cứng
 
 Ví phần cứng là các thiết bị vận hành một ví bitcoin độc lập và bảo mật chạy trên 1 phần cứng chuyên dụng. Chúng được vận hành qua cổng usb với 1 trình duyệt web trên máy tính hoặc qua kết nối near-field communication (NFC) trên 1 thiết bị di động. Do xử lý tất cả các hoạt động liên quan đến bitcoin trên phần cứng chuyên dụng nên các ví này được cho là rất bảo mật và phù hợp để lưu trữ lượng lớn bitcoin.
