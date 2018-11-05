@@ -9,7 +9,7 @@ tags: [blockchain, transaction]
 
 Một ngày cuối tuần, bạn đến quán cà phê quen thuộc. Đến quầy order thức uống, đập vào mắt bạn là thông báo: "Chấp nhận thanh toán bằng bitcoin". Có lẽ chủ quán thấy được cách mạng công nghiệp 4.0 nên bổ sung bitcoin vào lựa chọn thanh toán của quán :v. Giá của thức uống vẫn được liệt kê theo VND, nhưng tại quầy thanh toán, khách hàng có thể lựa chọn trả bằng tiền mặt hoặc bitcoin. Bạn gọi 1 ly cà phê và nhân viên nhập vào máy tính như thường lệ. Sau đó, hệ thống máy bán hàng tự động quy đổi tổng giá tiền từ VND sang bitcoin theo tỉ giá hiện hành và hiển thị giá bằng cả 2 loại tiền:
 
-<p style="text-align:center">Tổng: 30,000 VND - 0,0002 BTC</p>
+<p style="text-align:center">Tổng: 30,000 VND - 0,0002 BTC (tỉ giá tại thời điểm viết bài)</p>
 
 Hệ thống thanh toán cũng tự động tạo ra một mã QR đặc biệt chứa một _yêu cầu thanh toán_. Khác với mã QR đơn thuần chỉ chứa địa chỉ bicoin đích, yêu cầu thanh toán là 1 URL được mã hóa dưới dạng QR trong đó chứa 1 địa chỉ bitcoin, khoản tiền cần thanh toán và 1 dữ liệu mô tả chung, chẳng hạn như "Quán cà phê XYZ".
 
