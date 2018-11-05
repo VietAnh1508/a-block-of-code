@@ -5,7 +5,67 @@
         <atom:link href="/a-block-of-code/feed.xml" rel="self" type="application/rss+xml"/>
         <link>https://vietanh1508.github.io//a-block-of-code/</link>
         <description></description>
-        <pubDate>Tue, 30 Oct 2018 15:05:47 +0000</pubDate>
+        <pubDate>Mon, 05 Nov 2018 16:21:48 +0000</pubDate>
+        
+        <item>
+            <title>Các giao dịch bitcoin (phần 2)</title>
+            <link>/a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html</link>
+            <guid isPermaLink="true">/a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html</guid>
+            <description>&lt;p&gt;Ở &lt;a href=&quot;/a-block-of-code/2018/10/30/cac-giao-dich-bitcoin-phan-1.html&quot; target=&quot;\_blank&quot;&gt;phần 1&lt;/a&gt;, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và đầu ra.&lt;/p&gt;
+
+&lt;h3 id=&quot;giao-dịch-được-tạo-như-thế-nào&quot;&gt;Giao dịch được tạo như thế nào?&lt;/h3&gt;
+
+&lt;p&gt;Ứng dụng ví của bạn sẽ chứa toàn bộ các logic nhằm chọn các đầu vào và đầu ra phù hợp để tạo một giao dịch đúng yêu cầu. Bạn chỉ cần xác định địa chỉ đích và lượng tiền muốn chuyển, ví bitcoin sẽ lo phần còn lại. Điều quan trọng cần lưu ý, ví bitcoin có thể tạo ra giao dịch ngay cả khi không có kết nối mạng.&lt;/p&gt;
+
+&lt;h4 id=&quot;chọn-đầu-vào&quot;&gt;Chọn đầu vào&lt;/h4&gt;
+
+&lt;p&gt;Bước đầu tiên, ứng dụng ví sẽ tìm các đầu vào có thể thanh toán được khoản tiền mà bạn phải trả cho ly cà phê. Hầu hết các ví đều theo dõi tất cả các đầu ra hiện có của địa chỉ trong ví (là khoản tiền mà bạn nhận được từ các giao dịch trước đó). Nếu ứng dụng bitcoin hoạt động như một &lt;a href=&quot;/a-block-of-code/2018/10/18/phan-loai-vi-bitcoin.html&quot; target=&quot;\_blank&quot;&gt;phần mềm nút đầy đủ&lt;/a&gt;, nó sẽ chứa bản sao của mọi đầu ra chưa được chi tiêu từ mọi giao dịch trong blockchain, nhờ đó có thể nhanh chóng chọn ra các đầu vào hợp lệ. Tuy nhiên, nút đầy đủ tốn rất nhiều dung lượng, không phù hợp với các ứng dụng ví của người dùng, nên hầu hết các ví chỉ chạy phần mềm “rút gọn”. Phần mềm rút gọn truy vấn mạng bitcoin để lấy các thông tin này thông qua API của các nhà cung cấp khác nhau (vì mọi giao dịch đã được lưu lại trong blockchain, sau đó được phân tán trên khắp mạng lưới). Các API này sẽ trả về tất cả các đầu ra giao dịch chưa chi tiêu của một địa chỉ. Ví dụ:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl https://blockchain.info/unspent?active&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK
+
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;unspent_outputs&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s2&quot;&gt;&quot;tx_hash&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;f2c245c38672a5d8fba5a5caa44dcef277a52e916a0603272f91286f2b052706&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;tx_hash_big_endian&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;tx_index&quot;&lt;/span&gt;:  47854970,
+            &lt;span class=&quot;s2&quot;&gt;&quot;tx_output_n&quot;&lt;/span&gt;: 1,
+            &lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;76a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;: 8450000,
+            &lt;span class=&quot;s2&quot;&gt;&quot;value_hex&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;0080efd0&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;confirmations&quot;&lt;/span&gt;: 271567
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+        ...
+    &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ở ví dụ trên, ta dùng &lt;em&gt;cURL&lt;/em&gt; để lấy thông tin đầu ra chưa chi tiêu của địa chỉ 1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK từ máy chủ blockchain.info. Kết quả trả về bao gồm dữ liệu tham chiếu đến giao dịch chứa đầu ra chưa chi tiêu này và giá trị của nó tính bằng satoshi &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;value&quot;: 8450000&lt;/code&gt; ~ 0,0845 BTC. Với thông tin này, ứng dụng ví của bạn có thể tạo ra một giao dịch để chuyển khoản tiền này đến chủ sở hữu mới.&lt;/p&gt;
+
+&lt;p&gt;Đầu ra chưa chi tiêu này có đủ bitcoin để thanh toán cho ly cà phê có giá 0,0002 BTC. Nếu không đủ, ví sẽ phải tiếp tục tìm kiếm qua nhiều đầu ra chứa những chi tiêu khác, giống như bạn gom tiền lẻ trong túi cho tới khi đủ tiền để trả cho món hàng.&lt;/p&gt;
+
+&lt;h4 id=&quot;tạo-đầu-ra&quot;&gt;Tạo đầu ra&lt;/h4&gt;
+
+&lt;p&gt;Đầu ra giao dịch được tạo dưới dạng một “kịch bản”. Kịch bản này nói rằng “Đầu ra này sẽ thuộc về bất cứ ai có thể trình ra chữ ký tương ứng với địa chỉ công khai của quán cà phê XYZ”. Do chủ quán có ví chứa các khóa tương ứng với địa chỉ đó, nên chỉ có chủ quán có thể nhận lượng tiền này.&lt;/p&gt;
+
+&lt;p&gt;Giao dịch này sẽ có một đầu ra thứ 2, bởi vì đầu vào 0,0845 BTC nhiều hơn giá của ly cà phê 0,0002 BTC, ta sẽ cần 0,0848 BTC tiền thừa trả lại. Ví của bạn sẽ tạo ra khoản thanh toán tiền thừa trong cùng một giao dịch. Về bản chất, phần mềm ví chia tiền thành 2 khoản thanh toán: một cho quán cà phê và một trả về cho chính nó. Bạn có thể sử dụng đầu ra này cho lần giao dịch sau.&lt;/p&gt;
+
+&lt;p&gt;Cuối cùng, để giao dịch bitcoin có thể được xử lý nhanh chóng, ứng dụng ví sẽ thêm vào một khoản phí nhỏ. Phí này không được ghi rõ trong giao dịch mà được ngầm định trong sự chênh lệch giữa đầu vào và đầu ra. Phần kết quả chênh lệch chính là &lt;em&gt;phí giao dịch&lt;/em&gt; được các thợ đào thu làm lệ phí xác thực và đưa giao dịch vào blockchain. Lưu ý rằng phần phí này không phụ thuộc vào số tiền giao dịch, nhưng dựa vào dung lượng dữ liệu của giao dịch.&lt;/p&gt;
+
+&lt;h3 id=&quot;thêm-giao-dịch-vào-blockchain&quot;&gt;Thêm giao dịch vào blockchain&lt;/h3&gt;
+
+&lt;p&gt;Giao dịch của bạn đã chứa mọi yếu tố cần thiết để xác nhận quyền sở hữu với số tiền trong đó và trao nó cho chủ sở hữu mới. Tiếp theo, giao dịch này phải được truyền tới mạng bitcoin, nơi nó sẽ trở thành một phần của blockchain.&lt;/p&gt;
+
+&lt;h4 id=&quot;giao-dịch-được-phán-tán-như-thế-nào&quot;&gt;Giao dịch được phán tán như thế nào&lt;/h4&gt;
+
+&lt;p&gt;Ứng dụng ví của bạn có thể gửi giao dịch mới đến một node bất kỳ có kết nối với nó thông qua mọi hình thức: WiFi, dây cáp… Ví bitcoin của bạn không cần phải kết nối trực tiếp đến ví của chủ quán cà phê, cũng không cần phải sử dụng đường truyền Internet của quán. Khi một node bitcoin nhận được 1 giao dịch hợp lệ mà nó chưa từng thấy trước đây, nó sẽ lập tức chuyển giao dịch này đến tất cả các node có kết nối với nó, kỹ thuật phân tán này được gọi là &lt;a href=&quot;https://en.wikipedia.org/wiki/Flooding_(computer_networking)&quot; target=&quot;\_blank&quot;&gt;flooding&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nếu ứng dụng ví của chủ quán có kết nối trực tiếp với ứng dụng ví của bạn, có thể nó sẽ là node đầu tiên nhận được giao dịch. Tuy nhiên, nếu ví của bạn kết nối đến các node khác, giao dịch này cũng sẽ đến được ví của chủ quán trong vài giây. Ví của chủ quán có thể ngay lập tức xác nhận giao dịch này là thanh toán gửi đến cho mình, vì nó chứa các đầu ra có thể mở bằng khóa của chủ quán.&lt;/p&gt;
+
+&lt;p&gt;Lúc này, giao dịch của bạn đã được phán tán trên mạng bitcoin, nhưng phải đến khi được xác nhận và được đưa vào một block thông qua quá trình “đào” (mining) thì nó mới trở thành một phần của blockchain.&lt;/p&gt;
+</description>
+            <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+        </item>
         
         <item>
             <title>Các giao dịch bitcoin (phần 1)</title>
@@ -15,7 +75,7 @@
 
 &lt;p&gt;Một ngày cuối tuần, bạn đến quán cà phê quen thuộc. Đến quầy order thức uống, đập vào mắt bạn là thông báo: “Chấp nhận thanh toán bằng bitcoin”. Có lẽ chủ quán thấy được cách mạng công nghiệp 4.0 nên bổ sung bitcoin vào lựa chọn thanh toán của quán :v. Giá của thức uống vẫn được liệt kê theo VND, nhưng tại quầy thanh toán, khách hàng có thể lựa chọn trả bằng tiền mặt hoặc bitcoin. Bạn gọi 1 ly cà phê và nhân viên nhập vào máy tính như thường lệ. Sau đó, hệ thống máy bán hàng tự động quy đổi tổng giá tiền từ VND sang bitcoin theo tỉ giá hiện hành và hiển thị giá bằng cả 2 loại tiền:&lt;/p&gt;
 
-&lt;p style=&quot;text-align:center&quot;&gt;Tổng: 30,000 VND - 0,0002 BTC&lt;/p&gt;
+&lt;p style=&quot;text-align:center&quot;&gt;Tổng: 30,000 VND - 0,0002 BTC (tỉ giá tại thời điểm viết bài)&lt;/p&gt;
 
 &lt;p&gt;Hệ thống thanh toán cũng tự động tạo ra một mã QR đặc biệt chứa một &lt;em&gt;yêu cầu thanh toán&lt;/em&gt;. Khác với mã QR đơn thuần chỉ chứa địa chỉ bicoin đích, yêu cầu thanh toán là 1 URL được mã hóa dưới dạng QR trong đó chứa 1 địa chỉ bitcoin, khoản tiền cần thanh toán và 1 dữ liệu mô tả chung, chẳng hạn như “Quán cà phê XYZ”.&lt;/p&gt;
 

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/a-block-of-code/assets/js/main.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/a-block-of-code/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/a-block-of-code/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="A block of code" href="https://vietanh1508.github.io///a-block-of-code//feed.xml" />
+
+    <!-- Font Awesome -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="/a-block-of-code/assets/css/vendor/font-awesome.min.css">
+
+    
+
+    <!-- Google Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+    
+
+    <!-- KaTeX 0.8.3 -->
+    
+    <link rel="stylesheet" type="text/css" href="/a-block-of-code/assets/css/vendor/katex.min.css">
+    <script src="/a-block-of-code/assets/js/vendor/katex.min.js">
+    </script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127661069-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127661069-1');
+</script>
+    
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Các giao dịch bitcoin (phần 2) | A block of code</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Các giao dịch bitcoin (phần 2)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ở phần 1, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và đầu ra." />
+<meta property="og:description" content="Ở phần 1, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và đầu ra." />
+<link rel="canonical" href="https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" />
+<meta property="og:url" content="https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" />
+<meta property="og:site_name" content="A block of code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-11-05T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Ở phần 1, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và đầu ra.","@type":"BlogPosting","url":"https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html","headline":"Các giao dịch bitcoin (phần 2)","dateModified":"2018-11-05T00:00:00+00:00","datePublished":"2018-11-05T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Các giao dịch bitcoin (phần 2) | A block of code</title>
+    <meta name="description" content="Ở phần 1, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và ...">
+    -->
+</head>
+
+<body>
+  <header class="site-header">
+    
+    <!-- Logo and title -->
+	<div class="branding">
+		<a href="/a-block-of-code/">
+			<img class="avatar" src="/a-block-of-code/assets/img/triangle.svg" alt=""/>
+		</a>
+
+		<h1 class="site-title">
+			<a href="/a-block-of-code/">A block of code</a>
+		</h1>
+	</div>
+    
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+    
+    <!-- Menu -->
+    <ul class="hide">
+        <!-- Auto Generation of NORMAL pages in the navbar -->
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/about/">
+                About
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/gallery/">
+                Gallery
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/a-block-of-code/portfolio/">
+                Portfolio
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         
+        
+        <!-- Auto Generation of SPECIAL pages in the navbar -->
+        
+          
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" href="https://vietanh1508.github.io//a-block-of-code/search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </li>
+          
+        
+          
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" href="https://vietanh1508.github.io//a-block-of-code/tags">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                </a>
+            </li>
+          
+        
+    </ul>
+        
+	</nav>
+</header>
+
+  <div class="content">
+    <article >
+  <header id="main" style="background-image: url('/a-block-of-code/')">
+    <h1 id="C%C3%A1c+giao+d%E1%BB%8Bch+bitcoin+%28ph%E1%BA%A7n+2%29" class="title">Các giao dịch bitcoin (phần 2)</h1>
+    <p class="meta">
+    November 5, 2018
+    
+    </p>
+  </header>
+  <section class="post-content">
+  
+    <p>Ở <a href="/a-block-of-code/2018/10/30/cac-giao-dich-bitcoin-phan-1.html" target="\_blank">phần 1</a>, mình đã được giới thiệu một giao dịch blockchain cơ bản, mua cà phê. Phần này, ta sẽ tìm hiểu sâu hơn về quá trình tạo giao dịch từ các đầu vào và đầu ra.</p>
+
+<h3 id="giao-dịch-được-tạo-như-thế-nào">Giao dịch được tạo như thế nào?</h3>
+
+<p>Ứng dụng ví của bạn sẽ chứa toàn bộ các logic nhằm chọn các đầu vào và đầu ra phù hợp để tạo một giao dịch đúng yêu cầu. Bạn chỉ cần xác định địa chỉ đích và lượng tiền muốn chuyển, ví bitcoin sẽ lo phần còn lại. Điều quan trọng cần lưu ý, ví bitcoin có thể tạo ra giao dịch ngay cả khi không có kết nối mạng.</p>
+
+<h4 id="chọn-đầu-vào">Chọn đầu vào</h4>
+
+<p>Bước đầu tiên, ứng dụng ví sẽ tìm các đầu vào có thể thanh toán được khoản tiền mà bạn phải trả cho ly cà phê. Hầu hết các ví đều theo dõi tất cả các đầu ra hiện có của địa chỉ trong ví (là khoản tiền mà bạn nhận được từ các giao dịch trước đó). Nếu ứng dụng bitcoin hoạt động như một <a href="/a-block-of-code/2018/10/18/phan-loai-vi-bitcoin.html" target="\_blank">phần mềm nút đầy đủ</a>, nó sẽ chứa bản sao của mọi đầu ra chưa được chi tiêu từ mọi giao dịch trong blockchain, nhờ đó có thể nhanh chóng chọn ra các đầu vào hợp lệ. Tuy nhiên, nút đầy đủ tốn rất nhiều dung lượng, không phù hợp với các ứng dụng ví của người dùng, nên hầu hết các ví chỉ chạy phần mềm “rút gọn”. Phần mềm rút gọn truy vấn mạng bitcoin để lấy các thông tin này thông qua API của các nhà cung cấp khác nhau (vì mọi giao dịch đã được lưu lại trong blockchain, sau đó được phân tán trên khắp mạng lưới). Các API này sẽ trả về tất cả các đầu ra giao dịch chưa chi tiêu của một địa chỉ. Ví dụ:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl https://blockchain.info/unspent?active<span class="o">=</span>1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK
+
+<span class="o">{</span>
+    <span class="s2">"unspent_outputs"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"tx_hash"</span>: <span class="s2">"f2c245c38672a5d8fba5a5caa44dcef277a52e916a0603272f91286f2b052706"</span>,
+            <span class="s2">"tx_hash_big_endian"</span>: <span class="s2">"0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2"</span>,
+            <span class="s2">"tx_index"</span>:  47854970,
+            <span class="s2">"tx_output_n"</span>: 1,
+            <span class="s2">"script"</span>: <span class="s2">"76a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac"</span>,
+            <span class="s2">"value"</span>: 8450000,
+            <span class="s2">"value_hex"</span>: <span class="s2">"0080efd0"</span>,
+            <span class="s2">"confirmations"</span>: 271567
+        <span class="o">}</span>,
+        ...
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ở ví dụ trên, ta dùng <em>cURL</em> để lấy thông tin đầu ra chưa chi tiêu của địa chỉ 1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK từ máy chủ blockchain.info. Kết quả trả về bao gồm dữ liệu tham chiếu đến giao dịch chứa đầu ra chưa chi tiêu này và giá trị của nó tính bằng satoshi <code class="highlighter-rouge">"value": 8450000</code> ~ 0,0845 BTC. Với thông tin này, ứng dụng ví của bạn có thể tạo ra một giao dịch để chuyển khoản tiền này đến chủ sở hữu mới.</p>
+
+<p>Đầu ra chưa chi tiêu này có đủ bitcoin để thanh toán cho ly cà phê có giá 0,0002 BTC. Nếu không đủ, ví sẽ phải tiếp tục tìm kiếm qua nhiều đầu ra chứa những chi tiêu khác, giống như bạn gom tiền lẻ trong túi cho tới khi đủ tiền để trả cho món hàng.</p>
+
+<h4 id="tạo-đầu-ra">Tạo đầu ra</h4>
+
+<p>Đầu ra giao dịch được tạo dưới dạng một “kịch bản”. Kịch bản này nói rằng “Đầu ra này sẽ thuộc về bất cứ ai có thể trình ra chữ ký tương ứng với địa chỉ công khai của quán cà phê XYZ”. Do chủ quán có ví chứa các khóa tương ứng với địa chỉ đó, nên chỉ có chủ quán có thể nhận lượng tiền này.</p>
+
+<p>Giao dịch này sẽ có một đầu ra thứ 2, bởi vì đầu vào 0,0845 BTC nhiều hơn giá của ly cà phê 0,0002 BTC, ta sẽ cần 0,0848 BTC tiền thừa trả lại. Ví của bạn sẽ tạo ra khoản thanh toán tiền thừa trong cùng một giao dịch. Về bản chất, phần mềm ví chia tiền thành 2 khoản thanh toán: một cho quán cà phê và một trả về cho chính nó. Bạn có thể sử dụng đầu ra này cho lần giao dịch sau.</p>
+
+<p>Cuối cùng, để giao dịch bitcoin có thể được xử lý nhanh chóng, ứng dụng ví sẽ thêm vào một khoản phí nhỏ. Phí này không được ghi rõ trong giao dịch mà được ngầm định trong sự chênh lệch giữa đầu vào và đầu ra. Phần kết quả chênh lệch chính là <em>phí giao dịch</em> được các thợ đào thu làm lệ phí xác thực và đưa giao dịch vào blockchain. Lưu ý rằng phần phí này không phụ thuộc vào số tiền giao dịch, nhưng dựa vào dung lượng dữ liệu của giao dịch.</p>
+
+<h3 id="thêm-giao-dịch-vào-blockchain">Thêm giao dịch vào blockchain</h3>
+
+<p>Giao dịch của bạn đã chứa mọi yếu tố cần thiết để xác nhận quyền sở hữu với số tiền trong đó và trao nó cho chủ sở hữu mới. Tiếp theo, giao dịch này phải được truyền tới mạng bitcoin, nơi nó sẽ trở thành một phần của blockchain.</p>
+
+<h4 id="giao-dịch-được-phán-tán-như-thế-nào">Giao dịch được phán tán như thế nào</h4>
+
+<p>Ứng dụng ví của bạn có thể gửi giao dịch mới đến một node bất kỳ có kết nối với nó thông qua mọi hình thức: WiFi, dây cáp… Ví bitcoin của bạn không cần phải kết nối trực tiếp đến ví của chủ quán cà phê, cũng không cần phải sử dụng đường truyền Internet của quán. Khi một node bitcoin nhận được 1 giao dịch hợp lệ mà nó chưa từng thấy trước đây, nó sẽ lập tức chuyển giao dịch này đến tất cả các node có kết nối với nó, kỹ thuật phân tán này được gọi là <a href="https://en.wikipedia.org/wiki/Flooding_(computer_networking)" target="\_blank">flooding</a>.</p>
+
+<p>Nếu ứng dụng ví của chủ quán có kết nối trực tiếp với ứng dụng ví của bạn, có thể nó sẽ là node đầu tiên nhận được giao dịch. Tuy nhiên, nếu ví của bạn kết nối đến các node khác, giao dịch này cũng sẽ đến được ví của chủ quán trong vài giây. Ví của chủ quán có thể ngay lập tức xác nhận giao dịch này là thanh toán gửi đến cho mình, vì nó chứa các đầu ra có thể mở bằng khóa của chủ quán.</p>
+
+<p>Lúc này, giao dịch của bạn đã được phán tán trên mạng bitcoin, nhưng phải đến khi được xác nhận và được đưa vào một block thông qua quá trình “đào” (mining) thì nó mới trở thành một phần của blockchain.</p>
+
+  
+  </section>
+  
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html&text=C%C3%A1c+giao+d%E1%BB%8Bch+bitcoin+%28ph%E1%BA%A7n+2%29%20%7C%20A+block+of+code:%20https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://plus.google.com/share?url=https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" target="_blank" title="Share on Google+">
+			<i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Google+</span>
+		</a>
+        </li>
+            
+        <li>
+            <a href="http://www.reddit.com/submit?url=https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html&title=C%C3%A1c+giao+d%E1%BB%8Bch+bitcoin+%28ph%E1%BA%A7n+2%29%20%7C%20A+block+of+code" target="_blank" title="Share on Reddit">
+			<i class="fa fa-reddit-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Reddit</span>
+		</a>
+        </li>
+           
+        <li>
+            <a href="mailto:?subject=C%C3%A1c+giao+d%E1%BB%8Bch+bitcoin+%28ph%E1%BA%A7n+2%29%20%7C%20A+block+of+code&body=:%20https://vietanh1508.github.io//a-block-of-code/2018/11/05/cac-giao-dich-bitcoin-phan-2.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+   
+   <!-- Tag list -->
+  
+  
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button" href="/a-block-of-code/tags#bitcoin">
+      <p><i class="fa fa-tag fa-fw"></i> bitcoin</p>
+    </a>
+    
+    <a class="button" href="/a-block-of-code/tags#blockchain">
+      <p><i class="fa fa-tag fa-fw"></i> blockchain</p>
+    </a>
+    
+    <a class="button" href="/a-block-of-code/tags#transaction">
+      <p><i class="fa fa-tag fa-fw"></i> transaction</p>
+    </a>
+    
+  </div>
+</footer>
+
+    
+</article>
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+	var disqus_shortname = 'ABlockOfCode';
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+</div>
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  <div id="previous-post" class="post-nav-post">
+      <p>Previous post</p>
+      <a href="/a-block-of-code/2018/10/30/cac-giao-dich-bitcoin-phan-1.html">
+        Các giao dịch bitcoin (phần 1)
+      </a>
+  </div>
+  
+  
+</div>
+
+  </div>
+  
+<footer class="site-footer">
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+	<a href="mailto:vietanhtong1508@gmail.com" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/vietanh1508" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/viet-anh-tong-032029147/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/VietAnhTong" title="Follow on Twitter" class="type">
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+
+</body>
+
+</html>
